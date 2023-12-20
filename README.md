@@ -76,15 +76,16 @@ Create database tables in the MySQL database with Alembic (it is assumed that th
 
     $ alembic upgrade head
 
-After installing Airflow this additional package may be required to be installed:
-
-    $ pip3 install apache-airflow[cncf.kubernetes]
-
 Airflow setup:
+
+- Set an environment variable that creates an `airflow` folder in the project's root folder.
+
+        $ echo "AIRFLOW_HOME=${PWD}/airflow" >> .env
 
 - Activate Pipenv shell and projets's virtual evironment.
 
         $ pipenv shell
+
 
 - Create Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components:
         
@@ -92,7 +93,6 @@ Airflow setup:
 
 - The previous command sets up the path for the dag folder but does not create it; the simple solution is to move the 'dags' folder I provide in the project root folder, that already contains the DAG for this project, into the Airflow folder:
   
-        $ cd /path/to/project/root/folder
         $ mv dags airflow
 
 #### Notes: 
@@ -108,7 +108,7 @@ Airflow setup:
 
 The project has two .env files: 
 
-- One that is visible and located in the root folder that enables `airflow standalone` to initiate and `airflow` folder in a desired location:
+- As previously seen on the Airflow setup, one is located in the root folder:
 
         AIRFLOW_HOME=/path/to/airflow/root/folder
 
