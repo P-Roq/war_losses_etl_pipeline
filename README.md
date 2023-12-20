@@ -86,7 +86,7 @@ Set two environment variables: `AIRFLOW_HOME` sets the `airflow` folder in the p
 to import modules outside de scope set in `airflow.cfg`.  
 
         $ echo "AIRFLOW_HOME=${PWD}/airflow" > .env
-        $ echo "PYTHONPATH=${PWD}:${AIRFLOW_HOME}" >> .env
+        $ echo "PYTHONPATH=${PWD}:${PWD}/airflow" >> .env
 
 
 Create Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components; we deactivate and activate the virtual environment to enable Pipenv to load the environment variable:

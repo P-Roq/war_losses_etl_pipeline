@@ -28,6 +28,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
 
@@ -40,6 +41,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
     op.create_table(
@@ -51,6 +53,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
     op.create_table(
@@ -62,6 +65,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
 
@@ -74,6 +78,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
     #----------------------------------------------------------------------------------------------------
@@ -87,6 +92,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
 
@@ -99,6 +105,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
     op.create_table(
@@ -110,6 +117,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
     op.create_table(
@@ -121,6 +129,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
 
@@ -133,6 +142,7 @@ def upgrade() -> None:
         sa.Column('abandoned', sa.Integer, nullable=False,),
         sa.Column('captured', sa.Integer, nullable=False,),
         sa.Column('scraped_at', sa.DateTime, unique=True),
+        sa.Column('created_at', sa.DateTime(timezone=True,), default=datetime.utcnow, nullable=False),
         )
 
 
