@@ -12,25 +12,21 @@ default_args = {
 with DAG(
     'scrapy_pipeline',
     default_args=default_args,
-    description='run_the_pipeline_script',
-    schedule='00 15 * * *',
+    description='Scrape and store data from oryx website.',
+    schedule='35 17 * * *',
     start_date=datetime(2023, 12, 11, 0, 0, 0),
     catchup=False,
-    tags=['oryx_pipeline'],
+    tags=['oryx'],
     ) as dag:
 
-    @task(task_id='run_scrape_pipeline')
+    @task(task_id='run_scrapy_pipeline')
     def scrape_and_store():
-        import sys
-        sys.path.append('../oryx_war_losses')
-        from spider_runner import run_spiders
+        from spider_runner import main
 
-        return run_spiders()
+        return main()
 
     @task(task_id='check_for_pipeline_errors')
     def check_scrapy_log():
-        import sys
-        sys.path.append('../oryx_war_losses')
         from log_check_runner import check_errors
 
         return check_errors()

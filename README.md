@@ -69,35 +69,39 @@ Install Pipenv:
 
 Create a virtual environment and install the required packages.
 
-    $ cd /path/to/project/root/folder
-    $ pipenv install -r /path/to/requirements.txt
+    $ cd path/to/project/root/folder
+    $ pipenv install -r requirements/requirements.txt
+
+Activate Pipenv shell and projets's virtual evironment.
+
+        $ pipenv shell
 
 Create database tables in the MySQL database with Alembic (it is assumed that the database schema has already been set on the server side):
 
     $ alembic upgrade head
 
-Airflow setup:
+#### Airflow setup:
 
-- Set an environment variable that creates an `airflow` folder in the project's root folder.
+Set two environment variables: `AIRFLOW_HOME` sets the `airflow` folder in the project's root folder path; adding both, project's root and airflow paths, to `PYTHONPATH`, allows the DAG script
+to import modules outside de scope set in `airflow.cfg`.  
 
-        $ echo "AIRFLOW_HOME=${PWD}/airflow" >> .env
-
-- Activate Pipenv shell and projets's virtual evironment.
-
-        $ pipenv shell
+        $ echo "AIRFLOW_HOME=${PWD}/airflow" > .env
+        $ echo "PYTHONPATH=${PWD}:${AIRFLOW_HOME}" >> .env
 
 
-- Create Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components:
+Create Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components; we deactivate and activate the virtual environment to enable Pipenv to load the environment variable:
         
+        $ exit
+        $ pipenv shell
         $ airflow standalone
 
-- The previous command sets up the path for the dag folder but does not create it; the simple solution is to move the 'dags' folder I provide in the project root folder, that already contains the DAG for this project, into the Airflow folder:
+The previous command sets up the path for the dag folder but does not create it; the simple solution is to move the 'dags' folder I provide in the project root folder, that already contains the DAG for this project, into the Airflow folder:
   
         $ mv dags airflow
 
 #### Notes: 
 
-- In order to Airflow to recognize the DAGs script inside the `dags` folder after relocation, it may be required to shut Airflow down and re-run `airflow standalone`.
+- In order to Airflow to recognize the DAGs script inside the `dags` folder after relocation, it may be required to shut Airflow down and re-run `airflow standalone`. To avoid loading DAG examples provided by Airflow set `load_examples` to `False` inside `airflow.cfg`.
 
 - The Airflow DAG is set to run daily at 3 p.m.
 

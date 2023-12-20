@@ -1,10 +1,11 @@
 import re
+import os
 from env_model import settings
 from spider_runner import project_root_path
 
-log_file_path = '~/oryx_scrape/log_files/scrapy.log'
+log_path = project_root_path + '/oryx_scrape/log_files/scrapy.log'
 
-with open(log_file_path, 'r') as file:
+with open(log_path, 'r') as file:
     log = file.readlines() 
 
 
