@@ -1,6 +1,0 @@
-VEHICLE_TYPE_DROPDOWN_UKRAINE = "vehicle-type-dropdown-ukraine"
-VEHICLE_TYPE_DROPDOWN_RUSSIA = "vehicle-type-dropdown-russia"
-SELECT_ALL_VEHICLES_BUTTON_UKRAINE = "select-all-vehicles-button-ukraine"
-SELECT_ALL_VEHICLES_BUTTON_RUSSIA = "select-all-vehicles-button-russia"
-AGGREGATE_LOSSES_LINE_CHART_UKRAINE = "line-chart-ukraine"
-AGGREGATE_LOSSES_LINE_CHART_RUSSIA = "line-chart-russia"
