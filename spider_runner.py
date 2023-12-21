@@ -31,8 +31,8 @@ def run_spiders():
         time.sleep(delay_between_runs)
 
 def main():
-    run_spiders()
     log_maintenance
+    run_spiders()
 
 if __name__ == '__main__':
     main()

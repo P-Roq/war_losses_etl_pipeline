@@ -31,7 +31,7 @@ def register_run(count_path: str, log_file_path: str) -> None:
             json.dump(dump, file,)
     else:
         with open(count_path, 'w') as file:
-            dump = {"runs": 0}
+            dump = {"runs": 1}
             json.dump(dump, file,)
         
         logging.basicConfig(
