@@ -1,6 +1,6 @@
 # Oryx War Losses - Tracking Daily Infantry Vehicles Losses In The Russo-Ukrainian War
 
-An orchestrated data pipeline that pulls data from the web to feed a dashboard.
+An orchestrated data pipeline that pulls data from the web to feed an interactive dashboard.
 
 ## Table of Contents
 
@@ -11,20 +11,22 @@ An orchestrated data pipeline that pulls data from the web to feed a dashboard.
   - [Installation](#installation)
   - [Configuration](#configuration)
 - [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
 - [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ## Introduction
 
-Data pipeline that scrapes and stores daily the summary of infantry vehicle war related losses (tanks, armoured vehicles, transport vehicles, etc.) from the Oryx website - a platform dedicated to the registration and validation of this type of events; the stored data feeds an interactive dashboard implementation that allows to visually observe the evolution of such losses.  
+This project is a data pipeline that automatically scrapes and stores on a daily basis a summary of infantry vehicle related losses resulting from the armed conflict between the Russian Federation and Ukraine started on the 24 of February, 2022. The data is taken from the Oryx website - a platform dedicated to collecting evidence and validating this type of occurrences, and pipelined to an interactive dashboard implementation that allows to visually observe and compare the evolution of such losses:
+- Compare between types of losses: destroyed, damaged, abandoned, captured.
+- Compare between types of vehicle lost: tanks, armoured fighting vehicles, etc.
+- Compare ukrainian and russian losses vis-a-vis.
 
 ### Interactive Dashboard View
 
 ![img_1](img/screenshot_1.png)
 
 ![img_2](img/screenshot_2.png)
+
+![img_3](img/screenshot_3.png)
 
 ## Features
 
@@ -34,29 +36,29 @@ Data pipeline that scrapes and stores daily the summary of infantry vehicle war 
 - SQLAlchemy for database setup and connection.
 - Alembic for data model migration.
 - Airflow for task orchestration.
-- Pandas for data processing.
+- X Array for data processing.
 - Plotly for data visualization.
-- Dash/Flask for front-end dashboard implementation.
+- Dash for front-end dashboard implementation.
 - Pytest for multiple purpose testing.   
 
 ##### Additional features:
-- Implementation of a small mechanism that tells Airflow to mark a DAG run as a 'failure' if the Scrapy log catches non-critical errors during the current crawling/scraping/pipelining process. 
+- Implementation of a small mechanism that tells Airflow to mark a DAG run as a 'failure' if the Scrapy log catches non-critical errors before and after the current crawling/scraping/pipelining process. 
 
-- Implementation of an auto-flusher for the Scrapy log file after 10 spider (combined) runs - two spiders, one that scrapes Ukraine related data end other that scrapes Russia related data, are ran sequentially via the same `spider_runner` script, therefore, two logs are appended to the log file each cycle.      
+- Implementation of an auto-flusher for the Scrapy log file after 10 spider combined runs (two spiders, one that scrapes Ukraine related data end other that scrapes Russia related data, are run sequentially via the same `spider_runner` script, therefore, two logs are appended to the log file each cycle).      
 
 ##### Notes:
-- This is a development version whose its deployment is not straightforward since it uses a development implementation of airflow ['airflow standalone'](https://airflow.apache.org/docs/apache-airflow/stable/start.html).
+- This projects uses an airflow version for development - ['airflow standalone'](https://airflow.apache.org/docs/apache-airflow/stable/start.html), which uses a simpler implementation when compared to the production setup.
 
 
 ## Getting Started 
 
 (For Linux machines)
 
-Integrating Airflow into a project required installation additional septs and considerations:
+Integrating Airflow into a project requires additional septs and considerations:
 
-- It is not [Poetry](https://python-poetry.org/) compatible; regardless it is highly recommended to use a virtual environment with a dependency manager that automatically finds package compatibility.
+- [Poetry](https://python-poetry.org/) ins't compatible; regardless it is highly recommended to use a virtual environment with a dependency manager that automatically finds/'locks' package compatibility.
 
-- The deployment of Airflow is usually made via a container/Docker framework; for development purposes, we can make it work is via Python `venv`/`pipenv`. When activating a virtual environment via [Pipenv](https://pipenv.pypa.io/en/latest/index.html), environment variables are loaded in advance, so that the Airflow root directory can be [recognized](https://stackoverflow.com/questions/56890937/how-to-use-apache-airflow-in-a-virtual-environment).   
+- The deployment of Airflow is usually made via a container/Docker framework; for development purposes, we can make it work via Python `venv`/`pipenv`. When activating a virtual environment via [Pipenv](https://pipenv.pypa.io/en/latest/index.html) environment variables are loaded in advance, enabling the Airflow root directory to be [recognized](https://stackoverflow.com/questions/56890937/how-to-use-apache-airflow-in-a-virtual-environment).   
 
 
 ### Installation
@@ -65,12 +67,12 @@ This installation process assumes that [MySQl](https://dev.mysql.com/doc/refman/
 
 Install Pipenv:
 
-    $ pip3 install --user pipenv
+        $ pip3 install --user pipenv
 
 Create a virtual environment and install the required packages.
 
-    $ cd path/to/project/root/folder
-    $ pipenv install -r requirements/requirements.txt
+        $ cd path/to/project/root/folder
+        $ pipenv install -r requirements/requirements.txt
 
 Activate Pipenv shell and projets's virtual evironment.
 
@@ -78,7 +80,7 @@ Activate Pipenv shell and projets's virtual evironment.
 
 Create database tables in the MySQL database with Alembic (it is assumed that the database schema has already been set on the server side):
 
-    $ alembic upgrade head
+        $ alembic upgrade head
 
 #### Airflow setup:
 
@@ -89,21 +91,21 @@ to import modules outside de scope set in `airflow.cfg`.
         $ echo "PYTHONPATH=${PWD}:${PWD}/airflow" >> .env
 
 
-Create Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components; we deactivate and activate the virtual environment to enable Pipenv to load the environment variable:
+Create the Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components; we deactivate and activate the virtual environment to enable Pipenv to load the environment variable:
         
         $ exit
         $ pipenv shell
         $ airflow standalone
 
-The previous command sets up the path for the dag folder but does not create it; the simple solution is to move the 'dags' folder I provide in the project root folder, that already contains the DAG for this project, into the Airflow folder:
+The previous command sets up the path for the dag folder but it does not create it; the simple solution is to move the 'dags' folder provided in the project root folder, that already contains the DAG for this project, into the Airflow folder:
   
         $ mv dags airflow
 
 #### Notes: 
 
-- In order to Airflow to recognize the DAGs script inside the `dags` folder after relocation, it may be required to shut Airflow down and re-run `airflow standalone`. To avoid loading DAG examples provided by Airflow set `load_examples` to `False` inside `airflow.cfg`.
+- For Airflow to recognize the DAGs script inside the `dags` folder after relocation, it may be required to shut Airflow down and re-run `airflow standalone`. To avoid loading DAG examples provided by Airflow set `load_examples` to `False` inside `airflow.cfg`.
 
-- The Airflow DAG is set to run daily at 3 p.m.
+- To set a specific time for the DAG to run change the `schedule` parameter in `./airflow/dags/dag_scrapy_pipeline.py` (currently set to run daily at 2 p.m).
 
 
 ### Configuration
@@ -133,7 +135,7 @@ There are three 'runner' scripts:
 Handled by Airflow:
 
 - `spider_runner`: runs the spiders' jobs 
-- `log_check_runner.py`: checks if there were previous runs had any errors during the execution.
+- `log_check_runner.py`: checks if previous runs had any errors during the execution.
 
 Initiating the dashboard:
 

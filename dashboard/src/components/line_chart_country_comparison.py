@@ -34,10 +34,10 @@ def render(
         ) -> html.Div:
 
         if not _loss_type:
-            return html.Div('Select a loss type.')
+            return html.Div('Select a loss type via search bar/dropdown.')
 
         if not _vehicle_type:
-            return html.Div('Select a vehicle type.')
+            return html.Div('Select a vehicle type via search bar/dropdown.')
 
         filtered_source_ukraine = (
             source_1.DATA

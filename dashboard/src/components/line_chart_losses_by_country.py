@@ -30,10 +30,10 @@ def render(
         ) -> html.Div:
 
         if not _loss_type:
-            return html.Div('Select a loss type.')
+            return html.Div('Select a loss type via search bar/dropdown.')
 
         if len(_vehicle_type) == 0:
-            return html.Div('Select a vehicle type via search bar or click on the "Select All" years button.')
+            return html.Div('Select a vehicle type via search bar/dropdown or click on the "Select All" button.')
 
         filtered_source = (
             source.DATA
