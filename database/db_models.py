@@ -124,7 +124,11 @@ class ImvRussia(Base):
     abandoned = Column(Integer, nullable=False,)
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
+<<<<<<< HEAD
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)    
+=======
+    created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
+>>>>>>> e0e8fa72a91b9c12f089ea72eb3b8aaa2c76ca7f
 
 
 #-----------------------------------------------------------------------------------------------------------------------

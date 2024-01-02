@@ -1,0 +1,3 @@
+[
+{"tank": {"total": 701, "destroyed": 472, "damaged": 57, "abandoned": 40, "captured": 132, "scraped_at": "2023-12-21 00:00:00"}, "afv": {"total": 342, "destroyed": 244, "damaged": 10, "abandoned": 8, "captured": 80, "scraped_at": "2023-12-21 00:00:00"}, "ifv": {"total": 792, "destroyed": 579, "damaged": 48, "abandoned": 52, "captured": 113, "scraped_at": "2023-12-21 00:00:00"}, "apc": {"total": 383, "destroyed": 234, "damaged": 25, "abandoned": 31, "captured": 93, "scraped_at": "2023-12-21 00:00:00"}, "imv": {"total": 398, "destroyed": 248, "damaged": 32, "abandoned": 7, "captured": 114, "scraped_at": "2023-12-21 00:00:00"}}
+]
