@@ -5,6 +5,7 @@ from sqlalchemy import (
     DateTime,
     )
 
+# from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 
 from datetime import datetime
@@ -124,7 +125,7 @@ class ImvRussia(Base):
     abandoned = Column(Integer, nullable=False,)
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
-    created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)    
+    created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
 
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -187,15 +188,13 @@ class DBSession:
         return dates
 
 
-    def fetch_losses_by_loss_type(self, loss_type: str):
-
-        column_identifier = getattr(self.Table, loss_type)
+    def fetch_losses(self,):
 
         session_instance = self.SessionLocal()
 
         dates = (
             session_instance
-            .query(column_identifier, self.Table.scraped_at)
+            .query(self.Table)
             .all()
             )
         
