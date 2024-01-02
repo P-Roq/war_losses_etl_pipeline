@@ -1,3 +1,7 @@
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 import sys
 import os
 import re
@@ -15,6 +19,9 @@ from database.db_setup import SessionLocal
 import database.db_models as models
 from oryx_scrape.spiders_settings import spider_ukraine, spider_russia
 
+# class OryxScrapePipeline:
+#     def process_item(self, item, spider):
+#         return item
 
 class OryxScrapePipeline:
     def __init__(self,):
@@ -50,6 +57,9 @@ class OryxScrapePipeline:
                 else:
                     message = 'An entry in the database table already as the same scraped date ("scraped_at").'
                     logging.info(message)
+                    # print('\n\n')
+                    # print(message)
+                    # print('\n\n')
             else:
                 db_session.add_resource(resource)
         

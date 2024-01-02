@@ -105,3 +105,5 @@ LOG_ENABLED = True
 LOG_ENCODING = 'utf-8'
 LOG_FILE = re.sub('spiders', 'log_files/scrapy.log', current_path)
 LOG_LEVEL = 'INFO'  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+
+LOG_STDOUT = True

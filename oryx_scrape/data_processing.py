@@ -20,6 +20,10 @@ def process_data(raw_data: str) -> dict:
 
     extracted = [int(loss_number) for loss_number in str_unfolded if loss_number != '']
 
+    print('\n\n')
+    print(f'{extracted = }')
+    print('\n\n')
+
     try:
         validated = ScrapedSplitData(
             total=extracted[0],
