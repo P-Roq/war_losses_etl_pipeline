@@ -1,4 +1,4 @@
-# Oryx War Losses - Tracking Daily Infantry Vehicles Losses In The Russo-Ukrainian War
+# Oryx War Losses - The Daily Tracking of Infantry Vehicle Losses In The Russo-Ukrainian War
 
 An orchestrated data pipeline that pulls data from the web to feed an interactive dashboard.
 
