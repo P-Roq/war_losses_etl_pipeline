@@ -91,15 +91,9 @@ to import modules outside de scope set in `airflow.cfg`.
         $ echo "PYTHONPATH=${PWD}:${PWD}/airflow" >> .env
 
 
-Create the Airflow folder inside the project root folder, initializes the database, creates a user, and starts all components; we deactivate and activate the virtual environment to enable Pipenv to load the environment variable:
+At this stage the `airflow` folder only contains the `dags` folder with the DAG script necessary for this project; the next command sets the Airflow components, initializes the database, creates an admin, and starts all components. 
         
-        $ exit
-        $ pipenv shell
         $ airflow standalone
-
-The previous command sets up the path for the dag folder but it does not create it; the simple solution is to move the 'dags' folder provided in the project root folder, that already contains the DAG for this project, into the Airflow folder:
-  
-        $ mv dags airflow
 
 #### Notes: 
 
