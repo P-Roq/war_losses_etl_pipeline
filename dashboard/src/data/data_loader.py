@@ -1,26 +1,10 @@
-import sys
-import os
 import re
 import pandas as pd
+import xarray as xr
+import numpy as np
 
 from database.db_setup import SessionLocal
 import database.db_models as models
-
-
-current_module_path = os.path.abspath(__file__)
-
-parent_directory = os.path.dirname(os.path.dirname(current_module_path))
-
-project_root = os.path.dirname(parent_directory)
-
-sys.path.insert(0, project_root)
-
-path_endpoint = "/dashboard/src/data/data_loader.py"
-
-oryx_folder_path = re.sub(path_endpoint, '', current_module_path)
-
-sys.path.insert(0, oryx_folder_path)
-
 
 class Country:
     UKRAINE: str = 'ukraine'
@@ -28,56 +12,62 @@ class Country:
 
 
 class AggregateLossesSchema:
-    # Columns by country.
+    # Columns - vehicle type.
     TANK: str = 'tank' 
     AFV: str = 'afv' 
     IFV: str = 'ifv' 
     APC: str = 'apc' 
     IMV: str = 'imv' 
 
-    # Loss Type
-    TOTAL: str = 'total'
-    DESTROYED: str = 'destroyed'
-    DAMAGED: str = 'damaged'
-    ABANDONED: str = 'abandoned'
-    CAPTURED: str = 'captured'
-
     INDEX: str = 'date'
 
 
-def get_aggregate_losses(country: str, loss_type: str):
+def get_aggregate_losses(country: str,) -> pd.DataFrame:
 
     if country == 'ukraine':
         table_classes = models.table_classes_ukraine
     if country == 'russia':
         table_classes = models.table_classes_russia
 
-    aggregate_losses = pd.DataFrame() 
+    losses_container = []
 
     for table_class in table_classes:
+
         db_session = models.DBSession(SessionLocal, table_class)
+        
         vehicle_type = re.sub(f'_{country}', '', table_class.__tablename__)
 
-        losses = db_session.fetch_losses_by_loss_type(loss_type)
-        losses = pd.DataFrame(losses, columns=[vehicle_type, AggregateLossesSchema.INDEX])
-        losses.index = losses[AggregateLossesSchema.INDEX]
-        losses = losses.drop(columns=[AggregateLossesSchema.INDEX]) 
-        
-        if losses.shape[1] == 0:
-            aggregate_losses = losses.copy() 
-        else:   
-            aggregate_losses = pd.concat(
-                [aggregate_losses, losses.copy()],
-                axis=1, 
-                )
-            
-    aggregate_losses = aggregate_losses.rename(columns={
-        'tank': AggregateLossesSchema.TANK,
-        'afv': AggregateLossesSchema.AFV,
-        'ifv': AggregateLossesSchema.IFV,
-        'apc': AggregateLossesSchema.APC,
-        'imv': AggregateLossesSchema.IMV,
-        }
-    )
+        losses = db_session.fetch_losses()
 
-    return aggregate_losses
+        losses_array = np.array([
+                [row.total for row in losses],
+                [row.destroyed for row in losses],
+                [row.damaged for row in losses],
+                [row.abandoned for row in losses],
+                [row.captured for row in losses],
+                ])
+
+        table_losses = xr.DataArray(
+            data=np.transpose(losses_array),
+            coords=[
+                [row.scraped_at for row in losses],
+                ['total', 'destroyed', 'damaged', 'abandoned', 'captured'],
+                ],
+            dims=['date', 'loss_type'],
+            attrs={'vehicle_type': vehicle_type}
+            )
+        
+        losses_container.append(table_losses)
+
+    concat_losses = xr.Dataset({table.attrs['vehicle_type']: table for table in losses_container})
+
+    return concat_losses
+
+
+
+class DataSource:
+    def __init__(self, country: str):
+        self.VEHICLE_TYPE = ['tank', 'afv', 'ifv', 'apc', 'imv']
+        self.LOSS_TYPE = ['total', 'destroyed', 'damaged', 'abandoned', 'captured']
+        self.DATA = get_aggregate_losses(country)
+

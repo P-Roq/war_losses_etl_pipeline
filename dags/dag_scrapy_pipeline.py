@@ -13,7 +13,7 @@ with DAG(
     'scrapy_pipeline',
     default_args=default_args,
     description='Scrape and store data from oryx website.',
-    schedule='35 17 * * *',
+    schedule='00 15 * * *',
     start_date=datetime(2023, 12, 11, 0, 0, 0),
     catchup=False,
     tags=['oryx'],
@@ -29,13 +29,18 @@ with DAG(
     def check_scrapy_log():
         from log_check_runner import check_errors
 
-        return check_errors()
+        try:
+            return check_errors()
+        except Exception as e:
+            ti = check_scrapy_log.get_task_instance()
+            ti.log.error(f'Task failed with exception: {e}')
+            raise
 
+    task_a = check_scrapy_log()
+    task_b = scrape_and_store()
+    task_c = scrape_and_store()
 
-    task_1 = scrape_and_store()
-    task_2 = check_scrapy_log()
-
-    task_1 >> task_2
+    task_a >> task_b >> task_c
 
 
 if __name__ == '__main__':

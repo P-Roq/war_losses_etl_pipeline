@@ -21,8 +21,6 @@ class TanksUkraine(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
-
 
 class AfvUkraine(Base):
     __tablename__ = 'afv_ukraine'
@@ -34,7 +32,6 @@ class AfvUkraine(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 class IfvUkraine(Base):
     __tablename__ = 'ifv_ukraine'
@@ -46,7 +43,6 @@ class IfvUkraine(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 class ApcUkraine(Base):
     __tablename__ = 'apc_ukraine'
@@ -58,7 +54,6 @@ class ApcUkraine(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 
 class ImvUkraine(Base):
@@ -71,7 +66,6 @@ class ImvUkraine(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 #----------------------------------------------------------------------------------------------------
 
@@ -85,7 +79,6 @@ class TanksRussia(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 
 class AfvRussia(Base):
@@ -98,7 +91,6 @@ class AfvRussia(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 class IfvRussia(Base):
     __tablename__ = 'ifv_russia'
@@ -110,7 +102,6 @@ class IfvRussia(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 class ApcRussia(Base):
     __tablename__ = 'apc_russia'
@@ -122,7 +113,6 @@ class ApcRussia(Base):
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
     created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)
 
 
 class ImvRussia(Base):
@@ -134,8 +124,7 @@ class ImvRussia(Base):
     abandoned = Column(Integer, nullable=False,)
     captured = Column(Integer, nullable=False,)
     scraped_at = Column(DateTime, unique=True,)
-    created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime(timezone=True,), onupdate=func.now(), nullable=True)    
+    created_at = Column(DateTime(timezone=True,), default=datetime.utcnow, nullable=False)    
 
 
 #-----------------------------------------------------------------------------------------------------------------------

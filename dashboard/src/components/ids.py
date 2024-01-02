@@ -1,6 +1,19 @@
-VEHICLE_TYPE_DROPDOWN_UKRAINE = "vehicle-type-dropdown-ukraine"
-VEHICLE_TYPE_DROPDOWN_RUSSIA = "vehicle-type-dropdown-russia"
-SELECT_ALL_VEHICLES_BUTTON_UKRAINE = "select-all-vehicles-button-ukraine"
-SELECT_ALL_VEHICLES_BUTTON_RUSSIA = "select-all-vehicles-button-russia"
-AGGREGATE_LOSSES_LINE_CHART_UKRAINE = "line-chart-ukraine"
-AGGREGATE_LOSSES_LINE_CHART_RUSSIA = "line-chart-russia"
+DROPDOWN_VEHICLE_TYPE_UKRAINE = "dropdown-vehicle-type-ukraine"
+DROPDOWN_VEHICLE_TYPE_RUSSIA = "dropdown-vehicle-type-russia"
+DROPDOWN_VEHICLE_TYPE_COUNTRY_COMPARISON = "dropdown-vehicle-type-country-comparison"
+
+BUTTON_SELECT_ALL_VEHICLES_UKRAINE = "button-select-all-vehicles-ukraine"
+BUTTON_SELECT_ALL_VEHICLES_RUSSIA = "button-select-all-vehicles-russia"
+
+DROPDOWN_LOSS_TYPE_UKRAINE = "dropdown-loss-type-ukraine"
+DROPDOWN_LOSS_TYPE_RUSSIA = "dropdown-loss-type-russia"
+DROPDOWN_LOSS_TYPE_COUNTRY_COMPARISON = "dropdown-loss-type-country_comparison"
+
+LINE_CHART_AGGREGATE_LOSSES_UKRAINE = "line-chart-aggregate-losses-ukraine"
+LINE_CHART_AGGREGATE_LOSSES_RUSSIA = "line-chart-aggregate-losses-russia"
+LINE_CHART_AGGREGATE_LOSSES_COMPARISON = "line-chart-aggregate-losses-comparison"
+
+DATE_RANGE_SLIDER_AGGREGATE_LOSSES_UKRAINE = "date-range-slider-aggregate-losses-ukraine" 
+DATE_RANGE_SLIDER_AGGREGATE_LOSSES_RUSSIA = "date-range-slider-aggregate-losses-russia" 
+DATE_RANGE_SLIDER_AGGREGATE_LOSSES_COMPARISON = "date-range-slider-aggregate-losses-comparison" 
+

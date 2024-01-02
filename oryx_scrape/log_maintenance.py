@@ -13,7 +13,7 @@ abs_scrapy_log_path = os.path.join(current_dir, rel_scrapy_log_path)
 
 def register_run(count_path: str, log_file_path: str) -> None:
     """Register each log append per pipeline run by checking number of 
-    scrapy runs in `log_counts.json`. If the number
+    scrapy runs in `runs_counts.json`. If the number
     of runs exceeds 10, clean the scrapy log file.
     Note: each pipeline run equates to two crawling processes that
     are appended in sequence to the scrapy log file. For the intended
@@ -31,7 +31,7 @@ def register_run(count_path: str, log_file_path: str) -> None:
             json.dump(dump, file,)
     else:
         with open(count_path, 'w') as file:
-            dump = {"runs": 0}
+            dump = {"runs": 1}
             json.dump(dump, file,)
         
         logging.basicConfig(

@@ -11,7 +11,7 @@ with open(log_path, 'r') as file:
 
 def check_errors():
     for line in log:
-        if re.findall('\sERROR\s', line,):
+        if re.findall('ERROR', line,):
             raise Exception('An error has been found during a scrapy run.')
     else:
         return
