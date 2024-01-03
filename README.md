@@ -1,6 +1,6 @@
 # Oryx War Losses - The Daily Tracking of Infantry Vehicle Losses In The Russo-Ukrainian War
 
-An orchestrated data pipeline that pulls data from the web to feed an interactive dashboard.
+A small ETL pipeline that pulls data from the web to feed an interactive dashboard.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ An orchestrated data pipeline that pulls data from the web to feed an interactiv
 
 ## Introduction
 
-This project is a data pipeline that automatically scrapes and stores on a daily basis a summary of infantry vehicle related losses resulting from the armed conflict between the Russian Federation and Ukraine started on the 24 of February, 2022. The data is taken from the Oryx website - a platform dedicated to collecting evidence and validating this type of occurrences, and pipelined to an interactive dashboard implementation that allows to visually observe and compare the evolution of such losses:
+This project is an ETL pipeline that automatically scrapes and stores on a daily basis a summary of infantry vehicle related losses resulting from the armed conflict between the Russian Federation and Ukraine started on the 24 of February, 2022. The data is taken from the Oryx website - a platform dedicated to collecting evidence and validating this type of occurrences, and pipelined to an interactive dashboard implementation that allows to visually observe and compare the evolution of such losses:
 - Compare between types of losses: destroyed, damaged, abandoned, captured.
 - Compare between types of vehicle lost: tanks, armoured fighting vehicles, etc.
 - Compare ukrainian and russian losses vis-a-vis.

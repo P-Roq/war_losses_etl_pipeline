@@ -5,12 +5,12 @@ from sqlalchemy import (
     DateTime,
     )
 
-# from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 
 from datetime import datetime
 
 from .db_setup import Base
+
 
 class TanksUkraine(Base):
     __tablename__ = 'tank_ukraine'
