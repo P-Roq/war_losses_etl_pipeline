@@ -31,9 +31,9 @@ def render(
                 id=date_range_slider_id,
                 marks=make_marks(dates=_dates),
                 min=0,
-                max=len(_dates) - 1,
+                max=len(_dates),
                 step=1,
-                value=[0, len(_dates) - 1]
+                value=[0, len(_dates)]
                 ),
             ]
         )

@@ -11,10 +11,9 @@ from datetime import datetime
 
 from .db_setup import Base
 
-
 class TanksUkraine(Base):
     __tablename__ = 'tank_ukraine'
-    tanks_ukraine_id = Column(Integer, primary_key=True, autoincrement=True, unique=True,)
+    tank_ukraine_id = Column(Integer, primary_key=True, autoincrement=True, unique=True,)
     total = Column(Integer, nullable=False,)
     destroyed = Column(Integer, nullable=False,)
     damaged = Column(Integer, nullable=False,)
@@ -72,7 +71,7 @@ class ImvUkraine(Base):
 
 class TanksRussia(Base):
     __tablename__ = 'tank_russia'
-    tanks_russia_id = Column(Integer, primary_key=True, autoincrement=True, unique=True,)
+    tank_russia_id = Column(Integer, primary_key=True, autoincrement=True, unique=True,)
     total = Column(Integer, nullable=False,)
     destroyed = Column(Integer, nullable=False,)
     damaged = Column(Integer, nullable=False,)

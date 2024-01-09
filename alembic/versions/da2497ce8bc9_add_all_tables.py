@@ -21,7 +21,7 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     op.create_table(
         'tank_ukraine',
-        sa.Column('tanks_ukraine_id', sa.Integer, primary_key=True, autoincrement=True, unique=True,),
+        sa.Column('tank_ukraine_id', sa.Integer, primary_key=True, autoincrement=True, unique=True,),
         sa.Column('total', sa.Integer, nullable=False,),
         sa.Column('destroyed', sa.Integer, nullable=False,),
         sa.Column('damaged', sa.Integer, nullable=False,),
@@ -85,7 +85,7 @@ def upgrade() -> None:
 
     op.create_table(
         'tank_russia',
-        sa.Column('tanks_russia_id', sa.Integer, primary_key=True, autoincrement=True, unique=True,),
+        sa.Column('tank_russia_id', sa.Integer, primary_key=True, autoincrement=True, unique=True,),
         sa.Column('total', sa.Integer, nullable=False,),
         sa.Column('destroyed', sa.Integer, nullable=False,),
         sa.Column('damaged', sa.Integer, nullable=False,),
@@ -148,14 +148,14 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     # Drop tables - Ukraine.
-    op.drop_table('tanks_ukraine')
+    op.drop_table('tank_ukraine')
     op.drop_table('afv_ukraine')
     op.drop_table('ifv_ukraine')
     op.drop_table('apc_ukraine')
     op.drop_table('imv_ukraine')
 
     # Drop tables - Russia.
-    op.drop_table('tanks_russia')
+    op.drop_table('tank_russia')
     op.drop_table('afv_russia')
     op.drop_table('ifv_russia')
     op.drop_table('apc_russia')
