@@ -4,6 +4,7 @@ import numpy as np
 
 from dash import Dash, html, dcc 
 from dashboard.src.data.data_loader import DataSource
+from dashboard.src.components.styles import date_range_slider_styles
 
 def render(
       app: Dash,
@@ -26,7 +27,6 @@ def render(
 
     return html.Div(
         children=[
-            html.H6('Time Range'),
             dcc.RangeSlider(
                 id=date_range_slider_id,
                 marks=make_marks(dates=_dates),
@@ -35,5 +35,6 @@ def render(
                 step=1,
                 value=[0, len(_dates)]
                 ),
-            ]
+            ],
+        style=date_range_slider_styles['level_1'],
         )

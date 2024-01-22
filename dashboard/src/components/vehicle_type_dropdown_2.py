@@ -1,5 +1,6 @@
 from dash import Dash, html, dcc # dcc is a collection of user-interface supplied by dash
 from dash.dependencies import Input, Output
+from dashboard.src.components.styles import vehicle_dropdown_2_styles
 from dashboard.src.data.data_loader import DataSource
 
 def render(
@@ -17,12 +18,13 @@ def render(
 
     return html.Div(
         children=[
-            html.H6('Vehicle Type'),
+            html.H5('Vehicle Type'),
             dcc.Dropdown(
                 id=dropdown_id,
                 options=[{"label": vehicle_type, "value": vehicle_type} for vehicle_type in source.VEHICLE_TYPE],
                 value=source.VEHICLE_TYPE[0], # default value is 'total'
-                style={'width': '30%'},
+                style=vehicle_dropdown_2_styles['level_2'],
             ),
-        ]
-    )
+        ],
+        style=vehicle_dropdown_2_styles['level_1'],
+        )

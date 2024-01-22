@@ -61,7 +61,7 @@ def render(
             )
         
         fig.update_yaxes(title_text='units')
-
+        
         fig.data[0].name = 'Ukraine'  # update legend for the first trace
         fig.data[1].name = 'Russia'  # update legend for the second trace
 

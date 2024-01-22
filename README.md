@@ -63,20 +63,33 @@ Integrating Airflow into a project requires additional septs and considerations:
 
 ### Installation
 
-This installation process assumes that [MySQl](https://dev.mysql.com/doc/refman/8.0/en/postinstallation.html) has been installed locally. 
+This installation process assumes that [MySQL](https://dev.mysql.com/doc/refman/8.0/en/postinstallation.html) has been installed locally. 
+
+Pipenv can throw errors when working with a Python version different from the one used to create the virtual environment and the lock file; in this case we can use Pyenv to install the specific Python version used in this project: Python 3.8. 
+
+Install Pyenv following [these instructions](https://github.com/pyenv/pyenv), then:
+
+Fetch a specific version to be installed:
+
+        $ pipenv --python 3.8.15 install 
 
 Install Pipenv:
 
         $ pip3 install --user pipenv
 
-Create a virtual environment and install the required packages.
+Create the projets's virtual evironment with the same Python version fetched by Pyenv:
 
         $ cd path/to/project/root/folder
-        $ pipenv install -r requirements/requirements.txt
-
-Activate Pipenv shell and projets's virtual evironment.
-
         $ pipenv shell
+        $ pipenv install --python 3.8.15
+
+Verify if the specified Python version was successfully installed (the virtual environment must be active):
+
+        $ python --version
+
+Install the required packages.
+
+        $ pipenv install -r requirements/requirements.txt
 
 Create database tables in the MySQL database with Alembic (it is assumed that the database schema has already been set on the server side):
 

@@ -71,3 +71,6 @@ class DataSource:
         self.LOSS_TYPE = ['total', 'destroyed', 'damaged', 'abandoned', 'captured']
         self.DATA = get_aggregate_losses(country)
 
+
+
+# print(DataSource('russia').DATA.sel(loss_type='destroyed'))
