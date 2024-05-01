@@ -16,14 +16,19 @@ def render(
     
     def make_marks(dates: Iterable):
 
-        dates = {i: {'label': np.datetime_as_string(dates[i], unit='D')} for i in range(len(dates))}
+        # This list contains intervals of 50 up to 50K values.
+        range_intervals = [range(50*i, 50*(i+1)) for i in range(0, 1000+1)] 
 
-        for key in dates:
-            if len(dates[key]['label']) > 0:
-                if dates[key]['label'][-1] not in ['0', '5']:
-                    dates[key]['label'] = ''
+        nr_dates = len(dates)
 
-        return dates
+        if nr_dates > 10: 
+            for idx, range_ in enumerate(range_intervals):
+                if nr_dates in range_:
+                    marks = {i: np.datetime_as_string(dates[i], unit='D') for i in range(len(dates)) if (i % 5*idx == 0)}
+        else:
+            marks = {i: np.datetime_as_string(dates[i], unit='D') for i in range(len(dates))}
+
+        return marks
 
     return html.Div(
         children=[
