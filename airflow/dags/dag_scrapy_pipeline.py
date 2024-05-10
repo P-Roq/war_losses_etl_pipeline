@@ -38,7 +38,7 @@ with DAG(
 
     task_a = check_scrapy_log()
     task_b = scrape_and_store()
-    task_c = scrape_and_store()
+    task_c = check_scrapy_log()
 
     task_a >> task_b >> task_c
 
