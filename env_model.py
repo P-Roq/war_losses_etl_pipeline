@@ -28,7 +28,7 @@ else:
                 return f.read()
             
         key_db: str = get_secret(os.getenv('MYSQL_PASSWORD'))
-        database: str = os.getenv('MYQL_DATABASE')
+        database: str = os.getenv('MYSQL_DATABASE')
         username: str = os.getenv('MYSQL_USER')
         host: str = os.getenv('MYSQL_HOST')
         port: str = os.getenv('PORT')
