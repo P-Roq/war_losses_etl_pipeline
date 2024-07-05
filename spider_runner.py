@@ -2,8 +2,11 @@ import os
 import time
 import subprocess
 
+from database.db_setup import check_database_connection
+
 from oryx_scrape.spiders_settings import spider_russia, spider_ukraine
 from oryx_scrape.log_maintenance import log_maintenance
+
 
 project_root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
 
@@ -16,6 +19,7 @@ def run_spider(spider_name, output_file):
     """
     
     os.chdir(f'{project_root_path}/oryx_scrape/spiders')
+    # subprocess.run(['scrapy', 'crawl', spider_name, '-O', output_file, '-a', 'append=True'])
     subprocess.run(['scrapy', 'crawl', spider_name, '-O', output_file,])
 
 def run_spiders():
@@ -32,6 +36,7 @@ def run_spiders():
 
 def main():
     log_maintenance
+    check_database_connection()
     run_spiders()
 
 if __name__ == '__main__':
