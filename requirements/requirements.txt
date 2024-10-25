@@ -169,7 +169,7 @@ pydantic-settings==2.1.0; python_version >= '3.8'
 pydispatcher==2.0.7
 pygments==2.16.1; python_version >= '3.7'
 pyjwt==2.8.0; python_version >= '3.7'
-pymysql==1.1.0; python_version >= '3.7'
+pymysql==1.1.1; python_version >= '3.7'
 pyopenssl==23.3.0; python_version >= '3.7'
 pytest==8.0.2; python_version >= '3.8'
 python-daemon==3.0.1; python_version >= '3'
