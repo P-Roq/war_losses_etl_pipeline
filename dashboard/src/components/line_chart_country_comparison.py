@@ -1,7 +1,5 @@
 from typing import List
-import pandas as pd
-import xarray as xr
-
+from time import sleep
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 import plotly.express as px
@@ -19,6 +17,7 @@ def render(
         date_range_slider_id: str,
         ) -> html.Div:
     
+    sleep(0.5)
     @app.callback(
         Output(chart_id, "children"),
         [
@@ -38,19 +37,19 @@ def render(
 
         if not _vehicle_type:
             return html.Div('Select a vehicle type via search bar/dropdown.')
-
+        sleep(0.5)
         filtered_source_ukraine = (
             source_1.DATA
             .sel(loss_type=_loss_type, drop=True)[_vehicle_type]
             .isel(date=slice(date_range[0], date_range[1]))
             )
-        
+        sleep(0.5)
         filtered_source_russia = (
             source_2.DATA
             .sel(loss_type=_loss_type, drop=True)[_vehicle_type]
             .isel(date=slice(date_range[0], date_range[1]))
             )
-
+        sleep(0.5)
         fig = px.line(
             y=[
                 filtered_source_ukraine.values,

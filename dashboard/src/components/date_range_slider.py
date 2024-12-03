@@ -1,6 +1,4 @@
-from typing import List, Iterable
-import pandas as pd
-import numpy as np
+from typing import Iterable
 
 from dash import Dash, html, dcc 
 from dashboard.src.data.data_loader import DataSource
@@ -13,21 +11,18 @@ def render(
       ) -> html.Div:
     
     _dates = source.DATA.coords['date'].values
-    
-    def make_marks(dates: Iterable):
 
-        # This list contains intervals of 50 up to 50K values.
-        range_intervals = [range(50*i, 50*(i+1)) for i in range(0, 1000+1)] 
+    def make_marks(dates: Iterable):
 
         nr_dates = len(dates)
 
-        if nr_dates > 10: 
-            for idx, range_ in enumerate(range_intervals):
-                if nr_dates in range_:
-                    marks = {i: np.datetime_as_string(dates[i], unit='D') for i in range(len(dates)) if (i % 5*idx == 0)}
+        # We are going for about 20 permanent marks regardless of the increasing in data.
+        if nr_dates >= 20: 
+            steps = round(nr_dates / 20)
+            marks={i: '' for i in range(len(dates)) if (i % steps == 0)}
         else:
-            marks = {i: np.datetime_as_string(dates[i], unit='D') for i in range(len(dates))}
-
+            marks = {i: '' for i in range(len(dates))}
+        
         return marks
 
     return html.Div(
@@ -37,7 +32,6 @@ def render(
                 marks=make_marks(dates=_dates),
                 min=0,
                 max=len(_dates),
-                step=1,
                 value=[0, len(_dates)]
                 ),
             ],

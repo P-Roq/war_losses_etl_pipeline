@@ -1,4 +1,5 @@
 from typing import List
+from time import sleep
 
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
@@ -15,6 +16,8 @@ def render(
         dropdown_vehicle_type_id: str,
         date_range_slider_id: str,
         ) -> html.Div:
+    
+    sleep(0.5)
     @app.callback(
         Output(chart_id, "children"),
         [
@@ -34,7 +37,8 @@ def render(
 
         if len(_vehicle_type) == 0:
             return html.Div('Select a vehicle type via search bar/dropdown or click on the "Select All" button.')
-
+    
+        sleep(0.5)
         filtered_source = (
             source.DATA
             .sel(loss_type=_loss_type, drop=True)[_vehicle_type]
